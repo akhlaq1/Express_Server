@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .num{
+            width: 5%;
+        }
+    </style>
+</head>
+<body>
+   <button onclick="window.location = '/index.html';">Home Page</button>
+<form action="/insert" method="post">
+    <fieldset>
+        <legend>SignUp</legend>
+      Name
+        <input name="name" type="text"/><br/><br/>
+        
+            <label>
+                Email : <input type="email" name="email" ><br/><br/>
+            </label>
+
+        Password
+        <input name="pass" type="password"/><br/><br/>
+
+        
+        <label>
+                Father Name : <input type="text" name="fname"><br/><br/>
+            </label>
+            
+            
+            <label>
+                Age : <input type="number" max="31" class="num" placeholder="DD" name="bday" >-<input type="number" class="num" max="12" placeholder="MM" name="bmonth" >-<input class="num" max="2020" min="1920" placeholder="YYYY" type="number" name="byear" ><br/><br/>
+            </label>
+            
+            
+        
+    </fieldset>
+	<button type="submit"> Sign Up </button>
+
+</form>
+<br><br>
+    <p>Already registered , then Sign in , it's free</p><br>
+    <button onclick="window.location = '/login.html';">login</button><br><br>
+       
+</body>
+</html>
