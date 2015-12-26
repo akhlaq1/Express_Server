@@ -10,10 +10,10 @@ var userSchema = new mongoose.Schema({
     year: { type: Number },
     email: { type: String, required: true }
 });
-var userModel = mongoose.model("users", userSchema);
+var UserModel = mongoose.model("users", userSchema);
 function initializeModels(app) {
     app.post('/insert', function (req, res) {
-        var users = new userModel({
+        var users = new UserModel({
             userName: req.body.name,
             Password: req.body.pass,
             fatherName: req.body.fname,
@@ -32,7 +32,7 @@ function initializeModels(app) {
         });
     });
     app.post('/login', function (req, res) {
-        userModel.find({
+        UserModel.find({
             email: req.body.email,
             Password: req.body.pass
         }, function (err, data) {
@@ -40,9 +40,9 @@ function initializeModels(app) {
                 res.write(err);
             }
             else {
-                res.send(data);
                 var stdData = data;
                 console.log(stdData);
+                res.render("index", { data: stdData });
             }
         });
     });

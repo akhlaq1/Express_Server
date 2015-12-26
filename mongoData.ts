@@ -1,6 +1,8 @@
 /// <reference path="./typings/tsd.d.ts" />
 
 import mongoose = require("mongoose");
+import ejs = require("ejs");
+
 let connection	= mongoose.connect("mongodb://localhost/stdData");
 
 
@@ -16,14 +18,14 @@ var userSchema = new mongoose.Schema({
 	
 }) ;
 
-var userModel = mongoose.model("users",userSchema);
+var UserModel = mongoose.model("users",userSchema);
 
 export function initializeModels(app){
 
 app.post('/insert',function(req,res){
 
 
-	var users = new userModel({
+	var users = new UserModel({
 	userName : req.body.name ,
 	Password :req.body.pass ,
 	fatherName : req.body.fname ,
@@ -52,7 +54,7 @@ app.post('/insert',function(req,res){
 	
 	app.post('/login',function(req,res){
 		
-		userModel.find({
+		UserModel.find({
 			email:req.body.email,
 			Password :req.body.pass
 			
@@ -61,9 +63,11 @@ app.post('/insert',function(req,res){
 				res.write(err)
 			}
 			else{
-				res.send(data);
+				
+				
 				var stdData = data ;
 				console.log(stdData);
+				res.render("index",{data:stdData})
 			}
 		})
 		

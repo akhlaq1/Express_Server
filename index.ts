@@ -3,6 +3,7 @@
 
 // requiring of modules starts
 import {initializeModels} from "./mongoData";
+import ejs = require("ejs");
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
@@ -25,11 +26,26 @@ initializeModels(app);
 
 app.use(morgan("short"));
 
+//EjS code starts
+
+
+app.set("views",path.resolve(__dirname,"views"))
+app.set("view engine","ejs");
+
+app.get("/home",function(req,res){
+	res.render("index");
+});
+
+
+//EjS code ends
+
 
 //sending index html to client starts
 
 var publicPath = path.resolve(__dirname + "/public");
-app.use("/",express.static(publicPath));
+app.use(express.static(publicPath));
+
+
 
 app.use("/",function(req,res,next){
 	res.sendFile(path.resolve(__dirname + "/public/index.html"))
